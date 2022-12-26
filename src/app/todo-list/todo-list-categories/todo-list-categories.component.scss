@@ -1,0 +1,15 @@
+@import "../../_system/_styles/mixins";
+@import "../../_system/_styles/variables";
+
+.mat-column-position, .mat-column-action {
+  width: 5%;
+}
+
+.mat-column-label {
+  width: 80%;
+}
+
+.empty {
+  @include flex(column, center, center);
+  margin: 15% auto 0 auto;
+}

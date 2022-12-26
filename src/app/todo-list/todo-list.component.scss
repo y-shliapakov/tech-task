@@ -1,0 +1,56 @@
+@import "../_system/_styles/mixins";
+@import "../_system/_styles/variables";
+
+:host {
+  @include flex(row, flex-start, center);
+  padding: 4rem 4rem 0 8rem;
+}
+
+.todo-list {
+  width: 40vw;
+  height: 55vh;
+  background: $white-regular;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  &__action {
+    @include flex(row, center, center);
+    cursor: pointer;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 40px;
+    height: 40px;
+    color: $white-regular;
+    border-radius: 50%;
+    background: $primary;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  }
+}
+
+.todo-title {
+  margin-left: 5%;
+
+  .arrow {
+    width: 200px;
+    height: 200px;
+    transform: rotate(-80deg);
+    filter: drop-shadow(2px 4px 6px black) invert(1);
+    background-size: cover;
+    background-image: url('../../assets/images/arrow.png');
+  }
+
+  .title {
+    color: $white-regular;
+    font-size: 50px;
+    font-weight: 600;
+    filter: drop-shadow(0px 0px 2px #fff);
+  }
+
+  .main-title {
+    background: #00cfdf;
+    padding: 0 1rem;
+  }
+}
+
+

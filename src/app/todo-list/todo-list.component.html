@@ -1,0 +1,17 @@
+<section class="todo-list">
+  <mat-tab-group #group [selectedIndex]="1">
+    <mat-tab [tabIndex]="0" label="Categories">
+      <app-todo-list-categories #categories></app-todo-list-categories>
+    </mat-tab>
+    <mat-tab [tabIndex]="1" label="Tasks">
+      <app-todo-list-tasks #tasks></app-todo-list-tasks>
+    </mat-tab>
+  </mat-tab-group>
+  <div (click)="openAction(group.selectedIndex, group.selectedIndex === 0 ? categories.getLastIndex() : tasks.getLastIndex())"
+       mat-ripple class="todo-list__action">+</div>
+
+</section>
+<section class="todo-title">
+  <div class="arrow"></div>
+  <h2 class="title">Welcome! <br> To-do list <span class="main-title">Tech-test</span></h2>
+</section>

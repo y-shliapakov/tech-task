@@ -1,0 +1,13 @@
+@import "~src/app/_system/_styles/mixins";
+
+.dialog {
+
+  &-form {
+    @include flex(column, center, center);
+    width: 100%;
+
+    & mat-form-field {
+      width: inherit;
+    }
+  }
+}

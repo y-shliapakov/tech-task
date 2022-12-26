@@ -1,0 +1,72 @@
+@import "../../_system/_styles/mixins";
+@import "../../_system/_styles/variables";
+
+.mat-column-position, .mat-column-action {
+  width: 5%;
+}
+
+.mat-column-category, .mat-column-status {
+  width: 15%;
+}
+
+.mat-column-label {
+  width: 50%;
+}
+
+.done-row {
+  background: aliceblue;
+}
+
+.label-column {
+  @include flex(column, flex-start, flex-start);
+
+  &-main-text {
+    font-weight: 500;
+  }
+
+  &-secondary-text {
+    font-size: 12px;
+    color: $secondary;
+  }
+}
+
+.status-column {
+  @include flex(column, flex-start, flex-start);
+
+  &-main-text {
+    font-size: 12px;
+  }
+
+  &-secondary-text {
+    color: $secondary;
+    font-weight: 500;
+  }
+}
+
+.section {
+
+  &-wrapper {
+    height: 55vh;
+  }
+
+  &-sidenav {
+    width: 40%;
+    padding: 1rem;
+  }
+}
+
+.cart-content {
+  @include flex(column, flex-start, flex-start);
+  height: 80%;
+}
+
+.filter-dropdown {
+  @include flex(row, flex-end, flex-end);
+  background: $white-regular;
+  border-radius: 0 0 8px 8px;
+}
+
+.empty {
+  @include flex(column, center, center);
+  margin: 15% auto 0 auto;
+}

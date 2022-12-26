@@ -1,0 +1,32 @@
+{
+  "tasks": [
+    {
+      "label": "Kitchen Cleanups",
+      "description": "Clean my dirty kitchens",
+      "category": "house",
+      "done": false,
+      "id": 2
+    },
+    {
+      "label": "Taxes",
+      "description": "Start doing my taxes and contact my accountant jhon for advice",
+      "category": "bureaucracy",
+      "done": "26-12-2022",
+      "id": 3
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "label": "house"
+    },
+    {
+      "id": 2,
+      "label": "bureaucracy"
+    },
+    {
+      "label": "products",
+      "id": 3
+    }
+  ]
+}

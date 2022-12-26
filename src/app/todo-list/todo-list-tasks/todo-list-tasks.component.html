@@ -1,0 +1,106 @@
+<mat-drawer-container class="section-wrapper" autosize>
+  <mat-drawer #drawer class="section-sidenav" mode="over" position="end">
+    <div class="cart-header">
+      <h3>Filter</h3>
+    </div>
+    <div [formGroup]="filterForm" class="cart-content">
+      <mat-checkbox formControlName="inProgress" color="warn">Show task in progress</mat-checkbox>
+      <mat-checkbox formControlName="done" color="warn">Show task completion</mat-checkbox>
+
+      <hr>
+      <h4>Categories</h4>
+      <mat-select formControlName="categories" multiple>
+        <mat-option [value]="category.label" *ngFor="let category of categories"> {{category.label}} </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="cart-action">
+      <button mat-button color="primary" type="button" class="proceed-button" (click)="submitForm(true); drawer.close()">Reset</button>
+      <button mat-raised-button color="primary" type="button" class="proceed-button" (click)="submitForm(); drawer.close()">Apply</button>
+    </div>
+  </mat-drawer>
+
+  <div class="section-content">
+    <table [hidden]="!filteredTasks.length" mat-table [dataSource]="filteredTasks">
+
+      <!-- Mark Column -->
+      <ng-container matColumnDef="mark">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; index as i">
+          <mat-checkbox #checkboxValue (change)="markTask(element, checkboxValue.checked)" [checked]="element.done !== false" color="warn"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; index as i"> {{i + 1}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="label">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="label-column">
+            <span class="label-column-main-text">{{element.label}}</span>
+            <span class="label-column-secondary-text">{{element.description}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element"> {{element.category | titlecase}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="!element.done else ifDone">
+            In Progress
+          </ng-container>
+          <ng-template #ifDone>
+            <div class="status-column">
+              <span class="status-column-main-text">Performed on:</span>
+              <span class="status-column-secondary-text">{{element.done}}</span>
+            </div>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="table-menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="editTask(element)">
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="deleteTask(element)">
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr [ngClass]="{'done-row': entry.done}" mat-row *matRowDef="let entry; let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <ng-container *ngIf="!filteredTasks.length">
+      <div class="empty">To Do List empty</div>
+    </ng-container>
+  </div>
+</mat-drawer-container>
+
+<section class="filter-dropdown">
+  <button (click)="drawer.toggle()" class="filter-dropdown__button" mat-button>
+    <mat-icon>filter_list</mat-icon>
+    <span class="text-wrapper">Filters</span>
+  </button>
+</section>

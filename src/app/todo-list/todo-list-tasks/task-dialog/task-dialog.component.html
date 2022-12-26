@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="dialog-title">Task manager</h1>
+<div mat-dialog-content>
+  <form class="dialog-form" [formGroup]="taskForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input formControlName="label" type="text" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input formControlName="description" type="text" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option [value]="category.label" *ngFor="let category of categories">{{ category.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button type="button" mat-button mat-dialog-close color="primary" class="skip-button">
+    Close
+  </button>
+  <button (click)="save()" type="button" mat-raised-button color="primary" class="publish-button">
+    Save
+  </button>
+</div>
